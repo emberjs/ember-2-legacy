@@ -2,5 +2,9 @@
 'use strict';
 
 module.exports = function(/* environment, appConfig */) {
-  return { };
+  return {
+    EmberENV: {
+      _ENABLE_EMBER_K_SUPPORT: true
+    }
+  };
 };
