@@ -8,5 +8,6 @@ module.exports = {
     this._super.included.apply(this, arguments);
 
     this.import('vendor/ember-k.js');
+    this.import('vendor/safe-string.js');
   }
 };

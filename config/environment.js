@@ -6,7 +6,8 @@ module.exports = function(/* environment, appConfig */) {
     EmberENV: {
       _ENABLE_EMBER_K_SUPPORT: true,
       _ENABLE_DEPRECATION_OPTIONS_SUPPORT: true,
-      _ENABLE_WARN_OPTIONS_SUPPORT: true
+      _ENABLE_WARN_OPTIONS_SUPPORT: true,
+      _ENABLE_SAFE_STRING_SUPPORT: true
     }
   };
 };
