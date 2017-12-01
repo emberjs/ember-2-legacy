@@ -9,5 +9,6 @@ module.exports = {
 
     this.import('vendor/ember-k.js');
     this.import('vendor/safe-string.js');
+    this.import('vendor/enumerable-contains.js');
   }
 };
