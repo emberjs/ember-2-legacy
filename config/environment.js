@@ -7,7 +7,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_EMBER_K_SUPPORT: true,
       _ENABLE_DEPRECATION_OPTIONS_SUPPORT: true,
       _ENABLE_WARN_OPTIONS_SUPPORT: true,
-      _ENABLE_SAFE_STRING_SUPPORT: true
+      _ENABLE_SAFE_STRING_SUPPORT: true,
+      _ENABLE_ENUMERABLE_CONTAINS_SUPPORT: true
     }
   };
 };
