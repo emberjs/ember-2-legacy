@@ -15,8 +15,8 @@ test('that Handlebars.SafeString uses String.htmlSafe under the hood', function(
     }),
 
     htmlSafe: Ember.computed(function() {
-       return Ember.String.htmlSafe(someString);
-     })
+      return Ember.String.htmlSafe(someString);
+    })
   });
 
   let instance = Thing.create();
