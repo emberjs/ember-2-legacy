@@ -10,7 +10,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_SAFE_STRING_SUPPORT: true,
       _ENABLE_ENUMERABLE_CONTAINS_SUPPORT: true,
       _ENABLE_UNDERSCORE_ACTIONS_SUPPORT: true,
-      _ENABLE_RESOLVER_FUNCTION_SUPPORT: true
+      _ENABLE_RESOLVER_FUNCTION_SUPPORT: true,
+      _ENABLE_DID_INIT_ATTRS_SUPPORT: true
     }
   };
 };
