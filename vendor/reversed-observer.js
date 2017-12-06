@@ -27,8 +27,6 @@
 
       var func = args.shift(); // grab the "first" argument
       args.push(func); // move it to the end of the array
-
-      return originalObserver.apply(this, args);
     }
 
     return originalObserver.apply(this, args);
