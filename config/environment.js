@@ -13,7 +13,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_UNDERSCORE_ACTIONS_SUPPORT: true,
       _ENABLE_RESOLVER_FUNCTION_SUPPORT: true,
       _ENABLE_DID_INIT_ATTRS_SUPPORT: true,
-      _ENABLE_RENDER_SUPPORT: true
+      _ENABLE_RENDER_SUPPORT: true,
+      _ENABLE_REVERSED_OBSERVER_SUPPORT: true
     }
   };
 };
