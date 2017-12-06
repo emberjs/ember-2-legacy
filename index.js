@@ -11,5 +11,6 @@ module.exports = {
     this.import('vendor/safe-string.js');
     this.import('vendor/enumerable-contains.js');
     this.import('vendor/underscore-actions.js');
+    this.import('vendor/reversed-observer.js');
   }
 };
