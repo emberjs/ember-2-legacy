@@ -20,7 +20,7 @@ test('that Ember.immediateObserver is deprecated', function(assert) {
       baz: null,
 
       foo: Ember.immediateObserver('bar', function() {
-        return this.set('baz', 'helloworld');
+        this.set('baz', 'helloworld');
       })
     });
 
@@ -35,16 +35,12 @@ test('that Ember.immediateObserver calls Ember.observer', function(assert) {
     assert.expect(1);
 
     Ember.observer = () => {
-      assert.ok(true);
+      assert.ok(true, 'immediateObserver calls observer');
     };
 
     const Thing = Ember.Object.extend({
       bar: null,
-      baz: null,
-
-      foo: Ember.immediateObserver('bar', function() {
-        return this.set('baz', 'helloworld');
-      })
+      foo: Ember.immediateObserver('bar', function() {})
     });
 
     const instance = Thing.create();
