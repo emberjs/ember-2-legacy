@@ -14,21 +14,31 @@ module('Ember.RouterDSL.resource', {
 });
 
 test('should reset namespace if nested with resource', function(assert) {
-   assert.expectDeprecation(() => {
-     Router = Router.map(function() {
-       this.resource('bleep', function() {
-         this.resource('bloop', function() {
-           this.resource('blork');
-         });
-       });
-     });
+  assert.expect(4);
 
-     let router = Router.create();
-     router._initRouterJs();
+  assert.expectDeprecation(() => {
+    Router = Router.map(function() {
+      this.resource('bleep', function() {
+        this.resource('bloop', function() {
+          this.resource('blork');
+        });
+      });
+    });
 
-     assert.ok(router._routerMicrolib.recognizer.names['bleep'], 'nested resources do not contain parent name');
-     assert.ok(router._routerMicrolib.recognizer.names['bloop'], 'nested resources do not contain parent name');
-     assert.ok(router._routerMicrolib.recognizer.names['blork'], 'nested resources do not contain parent name');
+    let router = Router.create();
+    router._initRouterJs();
+
+    if (router._routerMicrolib) {
+      assert.ok(router._routerMicrolib.recognizer.names['bleep'], 'nested resources do not contain parent name');
+      assert.ok(router._routerMicrolib.recognizer.names['bloop'], 'nested resources do not contain parent name');
+      assert.ok(router._routerMicrolib.recognizer.names['blork'], 'nested resources do not contain parent name');
+    }
+    else {
+      assert.ok(router.router.recognizer.names['bleep'], 'nested resources do not contain parent name');
+      assert.ok(router.router.recognizer.names['bloop'], 'nested resources do not contain parent name');
+      assert.ok(router.router.recognizer.names['blork'], 'nested resources do not contain parent name');
+    }
+
    }, 'this.resource() is deprecated. Use this.route(\'name\', { resetNamespace: true }, function () {}) instead.');
 });
 
