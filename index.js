@@ -14,5 +14,6 @@ module.exports = {
     this.import('vendor/reversed-observer.js');
     this.import('vendor/initializer-arity.js');
     this.import('vendor/router-resource.js');
+    this.import('vendor/current-when.js');
   }
 };
