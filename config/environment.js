@@ -16,7 +16,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_RENDER_SUPPORT: true,
       _ENABLE_REVERSED_OBSERVER_SUPPORT: true,
       _ENABLE_INITIALIZER_ARGUMENTS_SUPPORT: true,
-      _ENABLE_ROUTER_RESOURCE: true
+      _ENABLE_ROUTER_RESOURCE: true,
+      _ENABLE_CURRENT_WHEN_SUPPORT: true
     }
   };
 };
