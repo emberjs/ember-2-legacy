@@ -24,9 +24,7 @@
     return _Ember.observer.apply(this, arguments);
   }
 
-  const EXTEND_PROTOTYPES = JSON.parse(decodeURIComponent(document.getElementsByName('dummy/config/environment')[0].content)).EmberENV.EXTEND_PROTOTYPES;
-
-  if (EXTEND_PROTOTYPES.Function === true) {
+  if (EmberENV.EXTEND_PROTOTYPES.Function === true) {
     Function.prototype.observesImmediately = _Ember.immediateObserver;
   }
 })();
