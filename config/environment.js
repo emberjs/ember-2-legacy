@@ -18,7 +18,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_INITIALIZER_ARGUMENTS_SUPPORT: true,
       _ENABLE_ROUTER_RESOURCE: true,
       _ENABLE_CURRENT_WHEN_SUPPORT: true,
-      _ENABLE_IMMEDIATE_OBSERVER_SUPPORT: true
+      _ENABLE_DEPRECATED_REGISTRY_SUPPORT: true,
+      _ENABLE_IMMEDIATE_OBSERVER_SUPPORT: true,
     }
   };
 };
