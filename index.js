@@ -16,5 +16,6 @@ module.exports = {
     this.import('vendor/router-resource.js');
     this.import('vendor/current-when.js');
     this.import('vendor/deprecated-registry.js');
+    this.import('vendor/immediate-observer.js');
   }
 };
