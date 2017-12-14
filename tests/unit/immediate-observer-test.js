@@ -46,3 +46,7 @@ test('that Ember.immediateObserver calls Ember.observer', function(assert) {
     const instance = Thing.create();
     instance.set('bar', 'start');
 });
+
+test('that function prototype correctly gets polyfilled', function(assert) {
+  assert.deepEqual(Function.prototype.observesImmediately, Ember.immediateObserver);
+});
