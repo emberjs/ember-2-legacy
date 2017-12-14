@@ -21,11 +21,6 @@ test('properties (and aliases) are correctly assigned for accessing the containe
   assert.ok(appInstance.__container__, '#__container__ is accessible');
   assert.ok(appInstance.__registry__, '#__registry__ is accessible');
 
-  // stub with a no-op to keep deprecation test simple
-  appInstance.__container__.lookup = function() {
-    assert.ok(true, '#loookup alias is called correctly');
-  };
-
   assert.ok(typeof appInstance.registry.register === 'function', '#registry.register is available as a function');
   appInstance.__registry__.register = function() {
     assert.ok(true, '#register alias is called correctly');
