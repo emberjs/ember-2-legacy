@@ -18,5 +18,6 @@ module.exports = {
     this.import('vendor/deprecated-registry.js');
     this.import('vendor/immediate-observer.js');
     this.import('vendor/string-fmt.js');
+    this.import('vendor/freezable.js');
   }
 };
