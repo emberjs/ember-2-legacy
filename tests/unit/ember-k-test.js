@@ -19,7 +19,7 @@ test('that Ember.K properly returns this when invoked', function(assert) {
 test('that Ember.K is deprecated', function(assert) {
   assert.expectDeprecation(() => {
     let obj = {
-     noop: Ember.K
+      noop: Ember.K
     };
 
     assert.equal(obj, obj.noop());
