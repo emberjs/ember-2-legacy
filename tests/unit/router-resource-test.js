@@ -13,7 +13,7 @@ module('Ember.RouterDSL.resource', {
   }
 });
 
-test('should reset namespace if nested with resource', function(assert) {
+test('should reset namespace if nested with resource', assert => {
   assert.expect(4);
 
   assert.expectDeprecation(() => {
@@ -42,7 +42,7 @@ test('should reset namespace if nested with resource', function(assert) {
    }, 'this.resource() is deprecated. Use this.route(\'name\', { resetNamespace: true }, function () {}) instead.');
 });
 
-test('should fail when using a reserved route name', function(assert) {
+test('should fail when using a reserved route name', assert => {
   assert.expectDeprecation(() => {
     let reservedNames = ['array', 'basic', 'object', 'application'];
 

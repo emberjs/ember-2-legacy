@@ -11,7 +11,7 @@ test('that Ember.ApplicationInstance.registry is correctly polyfilled', assert =
   assert.equal(typeof Ember.ApplicationInstance.prototype.registry, 'object', 'registry is present on Ember.ApplicationInstance');
 });
 
-test('properties (and aliases) are correctly assigned for accessing the container and registry', function(assert) {
+test('properties (and aliases) are correctly assigned for accessing the container and registry', assert => {
   assert.expect(6);
   Ember.$('#qunit-fixture').html('<div id=\'one\'><div id=\'one-child\'>HI</div></div><div id=\'two\'>HI</div>');
   let application = Ember.run(() => Ember.Application.create({ rootElement: '#one', router: null }));

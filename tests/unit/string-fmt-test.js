@@ -8,12 +8,12 @@ test('that Ember.String.fmt is correctly polyfilled', assert => {
   assert.equal(typeof Ember.String.fmt, 'function', 'function is defined on Ember');
 });
 
-test('that Ember.String.fmt formats a string', function (assert) {
+test('that Ember.String.fmt formats a string', assert => {
   assert.equal(Ember.String.fmt('Hello %@ %@', ['John', 'Doe']), 'Hello John Doe')
   assert.equal(Ember.String.fmt('Hello %@ %@', ['John', 'Madden']), 'Hello John Madden')
 });
 
-test('that Ember.String.fmt is deprecated', function (assert) {
+test('that Ember.String.fmt is deprecated', assert => {
   assert.expectDeprecation(() => {
     let result = Ember.String.fmt('%@', 'Hello');
 
@@ -22,7 +22,7 @@ test('that Ember.String.fmt is deprecated', function (assert) {
 });
 
 function testMacro(given, args, expected, description) {
-  test(description, function (assert) {
+  test(description, assert => {
     assert.expectDeprecation(() => {
       assert.equal(Ember.String.fmt(given, args), expected);
       if (EmberENV.EXTEND_PROTOTYPES.String) {
@@ -42,9 +42,9 @@ testMacro(
 );
 testMacro('data: %@', [{ id: 3 }], 'data: {id: 3}', `fmt('data: %@', [{ id: 3 }]) => 'data: {id: 3}'`);
 
-test('works with argument form', function (assert) {
-  // assert.expectDeprecation('Ember.String.fmt is deprecated, use ES6 template strings instead.', () => {
-  assert.equal(Ember.String.fmt('%@', 'John'), 'John');
-  assert.equal(Ember.String.fmt('%@ %@', ['John'], 'Doe'), '[John] Doe');
-  // });
+test('works with argument form', assert => {
+  assert.expectDeprecation(() => {
+    assert.equal(Ember.String.fmt('%@', 'John'), 'John');
+    assert.equal(Ember.String.fmt('%@ %@', ['John'], 'Doe'), '[John] Doe');
+  }, 'Ember.String.fmt is deprecated, use ES6 template strings instead.');
 });

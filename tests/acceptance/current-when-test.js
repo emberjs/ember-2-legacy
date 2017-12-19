@@ -3,7 +3,7 @@ import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | {{link-to currentWhen="index"}}');
 
-test('that {{link-to}} helper supports currentWhen', function(assert) {
+test('that {{link-to}} helper supports currentWhen', assert => {
   visit('/about');
 
   andThen(function() {
@@ -11,7 +11,7 @@ test('that {{link-to}} helper supports currentWhen', function(assert) {
   });
 });
 
-test('that currentWhen will trigger a deprecation', function(assert) {
+test('that currentWhen will trigger a deprecation', assert => {
   visit('/about');
 
   andThen(function() {
