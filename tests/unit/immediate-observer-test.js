@@ -13,7 +13,7 @@ module('Ember.immediateObserver', {
   }
 });
 
-test('that Ember.immediateObserver is deprecated', assert  => {
+test('that Ember.immediateObserver is deprecated', function(assert) {
   assert.expectDeprecation(() => {
     const Thing = Ember.Object.extend({
       bar: null,
@@ -31,7 +31,7 @@ test('that Ember.immediateObserver is deprecated', assert  => {
   }, 'Usage of `Ember.immediateObserver` is deprecated, use `observer` instead');
 });
 
-test('that Ember.immediateObserver calls Ember.observer', assert  => {
+test('that Ember.immediateObserver calls Ember.observer', function(assert) {
     assert.expect(1);
 
     Ember.observer = () => {
@@ -47,6 +47,6 @@ test('that Ember.immediateObserver calls Ember.observer', assert  => {
     instance.set('bar', 'start');
 });
 
-test('that function prototype correctly gets polyfilled', assert => {
+test('that function prototype correctly gets polyfilled', function(assert) {
   assert.deepEqual(Function.prototype.observesImmediately, Ember.immediateObserver);
 });

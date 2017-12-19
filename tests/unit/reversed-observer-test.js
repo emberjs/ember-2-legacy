@@ -3,7 +3,7 @@ import { module, test } from 'qunit';
 
 module('Ember.observer');
 
-test('that Ember.observer is deprecated when function is not the last argument', assert => {
+test('that Ember.observer is deprecated when function is not the last argument', function(assert) {
   assert.expectDeprecation(() => {
     const Thing = Ember.Object.extend({
       bar: null,
@@ -21,7 +21,7 @@ test('that Ember.observer is deprecated when function is not the last argument',
   }, 'Ensure the callback function is the last argument');
 });
 
-test('that Ember.observer is not deprecated when function the last argument', assert => {
+test('that Ember.observer is not deprecated when function the last argument', function(assert) {
   assert.expectNoDeprecation();
   const Thing = Ember.Object.extend({
     bar: null,

@@ -3,11 +3,11 @@ import { module, test } from 'qunit';
 
 module('Safe String');
 
-test('that Ember.Handlebars.SafeString is correctly polyfilled', assert => {
+test('that Ember.Handlebars.SafeString is correctly polyfilled', function(assert) {
   assert.equal(typeof Ember.Handlebars.SafeString, 'function', 'function is defined on Ember');
 });
 
-test('that Handlebars.SafeString uses String.htmlSafe under the hood', assert => {
+test('that Handlebars.SafeString uses String.htmlSafe under the hood', function(assert) {
   let someString = '<div>someString</div>';
   let Thing = Ember.Object.extend({
     safeString: Ember.computed(function() {
@@ -30,7 +30,7 @@ test('that Handlebars.SafeString uses String.htmlSafe under the hood', assert =>
   assert.ok(Ember.String.isHTMLSafe(instance.get('safeString')));
 });
 
-test('that Ember.Handlebars.SafeString is deprecated', assert => {
+test('that Ember.Handlebars.SafeString is deprecated', function(assert) {
   new Ember.Handlebars.SafeString();
   assert.expectDeprecation(/Ember.Handlebars.SafeString is deprecated in favor of Ember.String.htmlSafe/);
 });
