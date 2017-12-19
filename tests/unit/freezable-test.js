@@ -23,7 +23,7 @@ test('Ember.Freezable should be deprecated', assert => {
   }, '`Ember.Freezable` is deprecated, use `Object.freeze` instead.');
 });
 
-test('frozen objects should return same instance', function(assert) {
+test('frozen objects should return same instance', assert => {
   let obj, copy;
 
   const CopyableObject = Ember.Object.extend(Ember.Freezable, Ember.Copyable, {
