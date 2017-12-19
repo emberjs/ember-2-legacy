@@ -12,6 +12,8 @@ Router.map(function() {
   });
   this.route('item');
   this.route('defaultlayout');
+  this.route('link-to');
+  this.route('profile', { path: '/profile/:id' });
 });
 
 export default Router;
