@@ -19,5 +19,6 @@ module.exports = {
     this.import('vendor/immediate-observer.js');
     this.import('vendor/string-fmt.js');
     this.import('vendor/freezable.js');
+    this.import('vendor/component-defaultlayout.js');
   }
 };
