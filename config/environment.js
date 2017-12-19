@@ -20,7 +20,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_CURRENT_WHEN_SUPPORT: true,
       _ENABLE_DEPRECATED_REGISTRY_SUPPORT: true,
       _ENABLE_IMMEDIATE_OBSERVER_SUPPORT: true,
-      _ENABLE_STRING_FMT_SUPPORT: true      
+      _ENABLE_STRING_FMT_SUPPORT: true,
+      _ENABLE_FREEZABLE_SUPPORT: true
     }
   };
 };
