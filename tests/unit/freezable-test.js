@@ -5,7 +5,7 @@ module('Ember.Freezable');
 
 const { get, set } = Ember;
 
-test('frozenCopy should be deprecated', assert => {
+test('frozenCopy should be deprecated', function(assert) {
   assert.expectDeprecation(() => {
     let Obj = Ember.Object.extend(Ember.Freezable, Ember.Copyable, {
       copy() {
@@ -17,13 +17,13 @@ test('frozenCopy should be deprecated', assert => {
   }, '`frozenCopy` is deprecated, use `Object.freeze` instead.');
 });
 
-test('Ember.Freezable should be deprecated', assert => {
+test('Ember.Freezable should be deprecated', function(assert) {
   assert.expectDeprecation(() => {
     Ember.Object.extend(Ember.Freezable).create();
   }, '`Ember.Freezable` is deprecated, use `Object.freeze` instead.');
 });
 
-test('frozen objects should return same instance', assert => {
+test('frozen objects should return same instance', function(assert) {
   let obj, copy;
 
   const CopyableObject = Ember.Object.extend(Ember.Freezable, Ember.Copyable, {
