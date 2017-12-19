@@ -3,7 +3,7 @@ import { module, test } from 'qunit';
 
 module('Ember.K');
 
-test('that Ember.K is correctly polyfilled', assert => {
+test('that Ember.K is correctly polyfilled', function(assert) {
   assert.equal(typeof Ember.K, 'function', 'function is defined on Ember');
 });
 

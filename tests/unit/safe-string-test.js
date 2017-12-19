@@ -3,7 +3,7 @@ import { module, test } from 'qunit';
 
 module('Safe String');
 
-test('that Ember.Handlebars.SafeString is correctly polyfilled', assert => {
+test('that Ember.Handlebars.SafeString is correctly polyfilled', function(assert) {
   assert.equal(typeof Ember.Handlebars.SafeString, 'function', 'function is defined on Ember');
 });
 

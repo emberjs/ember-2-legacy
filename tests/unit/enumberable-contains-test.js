@@ -1,9 +1,9 @@
 import Ember from 'ember';
 import { module, test } from 'qunit';
 
-module('Ember.K');
+module('Enumberable Contains');
 
-test('that Ember.Enumerable#contains is correctly polyfilled', assert => {
+test('that Ember.Enumerable#contains is correctly polyfilled', function(assert) {
   let Klass = Ember.Object.extend(Ember.Enumerable);
   let obj = Klass.create();
   assert.equal(typeof obj.contains, 'function', 'function is defined on subclasses of Enumerable');
