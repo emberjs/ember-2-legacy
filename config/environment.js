@@ -22,7 +22,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_IMMEDIATE_OBSERVER_SUPPORT: true,
       _ENABLE_STRING_FMT_SUPPORT: true,
       _ENABLE_FREEZABLE_SUPPORT: true,
-      _ENABLE_COMPONENT_DEFAULTLAYOUT_SUPPORT: true
+      _ENABLE_COMPONENT_DEFAULTLAYOUT_SUPPORT: true,
+      _ENABLE_CONTROLLER_WRAPPED_SUPPORT: true
     }
   };
 };
