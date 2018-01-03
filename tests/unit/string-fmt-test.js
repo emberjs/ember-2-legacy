@@ -13,6 +13,11 @@ test('that Ember.String.fmt formats a string', function(assert) {
   assert.equal(Ember.String.fmt('Hello %@ %@', ['John', 'Madden']), 'Hello John Madden')
 });
 
+test('that when EXTEND_PROTOTYPES Sting is true the prototype is polyfilled', function(assert) {
+  assert.equal("Hello %@ %@".fmt('John', 'Doe'), "Hello John Doe");
+  assert.equal("Hello %@2, %@1".fmt('John', 'Doe'), "Hello Doe, John");
+});
+
 test('that Ember.String.fmt is deprecated', function(assert) {
   assert.expectDeprecation(() => {
     let result = Ember.String.fmt('%@', 'Hello');

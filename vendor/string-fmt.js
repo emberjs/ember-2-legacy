@@ -17,7 +17,7 @@
   function _fmt(str, formats) {
     let cachedFormats = formats;
 
-    if (!Ember.isArray(cachedFormats) || arguments.length > 2) {
+    if (!_Ember.isArray(cachedFormats) || arguments.length > 2) {
       cachedFormats = new Array(arguments.length - 1);
 
       for (let i = 1; i < arguments.length; i++) {
@@ -30,7 +30,7 @@
     return str.replace(/%@([0-9]+)?/g, (s, argIndex) => {
       argIndex = (argIndex) ? parseInt(argIndex, 10) - 1 : idx++;
       s = cachedFormats[argIndex];
-      return (s === null) ? '(null)' : (s === undefined) ? '' : inspect(s);
+      return (s === null) ? '(null)' : (s === undefined) ? '' : _Ember.inspect(s);
     });
   }
 
@@ -81,6 +81,6 @@
   }
 
   Object.defineProperty(_Ember.String, 'fmt', {
-    get: fmt
+    value: fmt
   });
 })();
