@@ -1,21 +1,24 @@
 import Ember from 'ember';
+import Object from '@ember/object';
 import { module, test } from 'qunit';
 
 let originalObserver;
 
 module('Ember.immediateObserver', {
   beforeEach() {
+    // eslint-disable-next-line ember/new-module-imports
     originalObserver = Ember.observer;
   },
 
   afterEach() {
+    // eslint-disable-next-line ember/new-module-imports
     Ember.observer = originalObserver;
   }
 });
 
 test('that Ember.immediateObserver is deprecated', function(assert) {
   assert.expectDeprecation(() => {
-    const Thing = Ember.Object.extend({
+    const Thing = Object.extend({
       bar: null,
       baz: null,
 
@@ -34,11 +37,12 @@ test('that Ember.immediateObserver is deprecated', function(assert) {
 test('that Ember.immediateObserver calls Ember.observer', function(assert) {
     assert.expect(1);
 
+    // eslint-disable-next-line ember/new-module-imports
     Ember.observer = () => {
       assert.ok(true, 'immediateObserver calls observer');
     };
 
-    const Thing = Ember.Object.extend({
+    const Thing = Object.extend({
       bar: null,
       foo: Ember.immediateObserver('bar', function() {})
     });

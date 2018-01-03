@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Object from '@ember/object';
 import { module, test } from 'qunit';
 
 module('Ember.K');
@@ -8,7 +9,7 @@ test('that Ember.K is correctly polyfilled', function(assert) {
 });
 
 test('that Ember.K properly returns this when invoked', function(assert) {
-  let Thing = Ember.Object.extend({
+  let Thing = Object.extend({
     randomMethod: Ember.K,
   });
 

@@ -1,15 +1,15 @@
-import Ember from 'ember';
+import Object, { observer } from '@ember/object';
 import { module, test } from 'qunit';
 
 module('Ember.observer');
 
 test('that Ember.observer is deprecated when function is not the last argument', function(assert) {
   assert.expectDeprecation(() => {
-    const Thing = Ember.Object.extend({
+    const Thing = Object.extend({
       bar: null,
       baz: null,
 
-      foo: Ember.observer(function() {
+      foo: observer(function() {
         return this.set('baz', 'helloworld');
       }, 'bar')
     });
@@ -23,11 +23,11 @@ test('that Ember.observer is deprecated when function is not the last argument',
 
 test('that Ember.observer is not deprecated when function the last argument', function(assert) {
   assert.expectNoDeprecation();
-  const Thing = Ember.Object.extend({
+  const Thing = Object.extend({
     bar: null,
     baz: null,
 
-    foo: Ember.observer('bar', function() {
+    foo: observer('bar', function() {
       return this.set('baz', 'helloworld');
     })
   });

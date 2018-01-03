@@ -1,13 +1,12 @@
 import Ember from 'ember';
+import Object, { get, set } from '@ember/object';
 import { module, test } from 'qunit';
 
 module('Ember.Freezable');
 
-const { get, set } = Ember;
-
 test('frozenCopy should be deprecated', function(assert) {
   assert.expectDeprecation(() => {
-    let Obj = Ember.Object.extend(Ember.Freezable, Ember.Copyable, {
+    let Obj = Object.extend(Ember.Freezable, Ember.Copyable, {
       copy() {
         return Obj.create();
       }
@@ -19,14 +18,14 @@ test('frozenCopy should be deprecated', function(assert) {
 
 test('Ember.Freezable should be deprecated', function(assert) {
   assert.expectDeprecation(() => {
-    Ember.Object.extend(Ember.Freezable).create();
+    Object.extend(Ember.Freezable).create();
   }, '`Ember.Freezable` is deprecated, use `Object.freeze` instead.');
 });
 
 test('frozen objects should return same instance', function(assert) {
   let obj, copy;
 
-  const CopyableObject = Ember.Object.extend(Ember.Freezable, Ember.Copyable, {
+  const CopyableObject = Object.extend(Ember.Freezable, Ember.Copyable, {
     id: null,
 
     init() {
@@ -44,7 +43,7 @@ test('frozen objects should return same instance', function(assert) {
   obj = new CopyableObject();
   assert.ok(!Ember.Freezable || Ember.Freezable.detect(obj), 'object should be freezable');
   copy = obj.frozenCopy();
-  assert.equal(Ember.get(obj, 'id'), Ember.get(copy, 'id'), 'new copy should be equal');
+  assert.equal(get(obj, 'id'), get(copy, 'id'), 'new copy should be equal');
   assert.ok(get(copy, 'isFrozen'), 'returned value should be frozen');
 
   copy = obj.freeze().frozenCopy();
