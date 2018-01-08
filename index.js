@@ -22,14 +22,14 @@ module.exports = {
   },
 
   treeForVendor(rawVendorTree) {
-    let babelAddon = this.addons.find(addon => addon.name === 'ember-cli-babel');
+    var babelAddon = this.addons.find(addon => addon.name === 'ember-cli-babel');
 
-    let transpiledVendorTree = babelAddon.transpileTree(rawVendorTree, {
+    var transpiledVendorTree = babelAddon.transpileTree(rawVendorTree, {
       'ember-cli-babel': {
         compileModules: false,
       },
     });
 
     return transpiledVendorTree;
-  },
+  }
 };
