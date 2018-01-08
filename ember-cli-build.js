@@ -5,7 +5,10 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
-    // Add options here
+    // required to work around https://github.com/ember-cli/ember-cli/issues/7505
+    trees: {
+      vendor: null,
+    }
   });
 
   /*
