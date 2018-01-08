@@ -1,4 +1,5 @@
 /* eslint-env node */
+'use strict'
 
 module.exports = {
   name: 'ember-2-legacy',
@@ -22,9 +23,9 @@ module.exports = {
   },
 
   treeForVendor(rawVendorTree) {
-    var babelAddon = this.addons.find(addon => addon.name === 'ember-cli-babel');
+    let babelAddon = this.addons.find(addon => addon.name === 'ember-cli-babel');
 
-    var transpiledVendorTree = babelAddon.transpileTree(rawVendorTree, {
+    let transpiledVendorTree = babelAddon.transpileTree(rawVendorTree, {
       'ember-cli-babel': {
         compileModules: false,
       },
