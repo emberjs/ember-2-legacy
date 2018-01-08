@@ -20,5 +20,17 @@ module.exports = {
     this.import('vendor/string-fmt.js');
     this.import('vendor/freezable.js');
     this.import('vendor/component-defaultlayout.js');
-  }
+  },
+
+  treeForVendor(rawVendorTree) {
+    let babelAddon = this.addons.find(addon => addon.name === 'ember-cli-babel');
+
+    let transpiledVendorTree = babelAddon.transpileTree(rawVendorTree, {
+      'ember-cli-babel': {
+        compileModules: false,
+      },
+    });
+
+    return transpiledVendorTree;
+  },
 };
