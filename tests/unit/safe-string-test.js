@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import Object, { computed } from '@ember/object';
+import { htmlSafe, isHTMLSafe } from '@ember/string';
 import { module, test } from 'qunit';
 
 module('Safe String');
@@ -9,13 +11,13 @@ test('that Ember.Handlebars.SafeString is correctly polyfilled', function(assert
 
 test('that Handlebars.SafeString uses String.htmlSafe under the hood', function(assert) {
   let someString = '<div>someString</div>';
-  let Thing = Ember.Object.extend({
-    safeString: Ember.computed(function() {
+  let Thing = Object.extend({
+    safeString: computed(function() {
       return new Ember.Handlebars.SafeString(someString);
     }),
 
-    htmlSafe: Ember.computed(function() {
-      return Ember.String.htmlSafe(someString);
+    htmlSafe: computed(function() {
+      return htmlSafe(someString);
     })
   });
 
@@ -27,7 +29,7 @@ test('that Handlebars.SafeString uses String.htmlSafe under the hood', function(
     'calling SafeString is the same as htmlSafe'
   );
 
-  assert.ok(Ember.String.isHTMLSafe(instance.get('safeString')));
+  assert.ok(isHTMLSafe(instance.get('safeString')));
 });
 
 test('that Ember.Handlebars.SafeString is deprecated', function(assert) {

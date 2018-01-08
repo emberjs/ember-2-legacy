@@ -1,16 +1,18 @@
 /*global EmberENV */
 import Ember from 'ember';
+import { fmt } from '@ember/string';
 import { module, test } from 'qunit';
 
 module('Ember.String.fmt');
 
 test('that Ember.String.fmt is correctly polyfilled', function(assert) {
+  // eslint-disable-next-line ember/new-module-imports
   assert.equal(typeof Ember.String.fmt, 'function', 'function is defined on Ember');
 });
 
 test('that Ember.String.fmt formats a string', function(assert) {
-  assert.equal(Ember.String.fmt('Hello %@ %@', ['John', 'Doe']), 'Hello John Doe')
-  assert.equal(Ember.String.fmt('Hello %@ %@', ['John', 'Madden']), 'Hello John Madden')
+  assert.equal(fmt('Hello %@ %@', ['John', 'Doe']), 'Hello John Doe');
+  assert.equal(fmt('Hello %@ %@', ['John', 'Madden']), 'Hello John Madden')
 });
 
 test('that when EXTEND_PROTOTYPES Sting is true the prototype is polyfilled', function(assert) {
@@ -20,7 +22,7 @@ test('that when EXTEND_PROTOTYPES Sting is true the prototype is polyfilled', fu
 
 test('that Ember.String.fmt is deprecated', function(assert) {
   assert.expectDeprecation(() => {
-    let result = Ember.String.fmt('%@', 'Hello');
+    let result = fmt('%@', 'Hello');
 
     assert.equal(result, 'Hello');
   }, 'Ember.String.fmt is deprecated, use ES6 template strings instead.');
@@ -29,7 +31,7 @@ test('that Ember.String.fmt is deprecated', function(assert) {
 function testMacro(given, args, expected, description) {
   test(description, function(assert) {
     assert.expectDeprecation(() => {
-      assert.equal(Ember.String.fmt(given, args), expected);
+      assert.equal(fmt(given, args), expected);
       if (EmberENV.EXTEND_PROTOTYPES.String) {
         assert.equal(given.fmt(...args), expected);
       }
@@ -49,7 +51,7 @@ testMacro('data: %@', [{ id: 3 }], 'data: {id: 3}', `fmt('data: %@', [{ id: 3 }]
 
 test('works with argument form', function(assert) {
   assert.expectDeprecation(() => {
-    assert.equal(Ember.String.fmt('%@', 'John'), 'John');
-    assert.equal(Ember.String.fmt('%@ %@', ['John'], 'Doe'), '[John] Doe');
+    assert.equal(fmt('%@', 'John'), 'John');
+    assert.equal(fmt('%@ %@', ['John'], 'Doe'), '[John] Doe');
   }, 'Ember.String.fmt is deprecated, use ES6 template strings instead.');
 });

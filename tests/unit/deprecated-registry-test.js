@@ -1,21 +1,24 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
+import Application from '@ember/application';
+import ApplicationInstance from '@ember/application/instance';
 
 module('Deprecated registry');
 
 test('that Ember.Application.registry is correctly polyfilled', function(assert) {
-  assert.equal(typeof Ember.Application.prototype.registry, 'object', 'registry is present on Ember.Application');
+  assert.equal(typeof Application.prototype.registry, 'object', 'registry is present on Ember.Application');
 });
 
 test('that Ember.ApplicationInstance.registry is correctly polyfilled', function(assert) {
-  assert.equal(typeof Ember.ApplicationInstance.prototype.registry, 'object', 'registry is present on Ember.ApplicationInstance');
+  assert.equal(typeof ApplicationInstance.prototype.registry, 'object', 'registry is present on Ember.ApplicationInstance');
 });
 
 test('properties (and aliases) are correctly assigned for accessing the container and registry', function(assert) {
   assert.expect(6);
-  Ember.$('#qunit-fixture').html('<div id=\'one\'><div id=\'one-child\'>HI</div></div><div id=\'two\'>HI</div>');
-  let application = Ember.run(() => Ember.Application.create({ rootElement: '#one', router: null }));
-  let appInstance = Ember.run(() => Ember.ApplicationInstance.create({ application }));
+  $('#qunit-fixture').html('<div id=\'one\'><div id=\'one-child\'>HI</div></div><div id=\'two\'>HI</div>');
+  let application = run(() => Application.create({ rootElement: '#one', router: null }));
+  let appInstance = run(() => ApplicationInstance.create({ application }));
 
   assert.ok(appInstance, 'instance should be created');
   assert.ok(appInstance.__container__, '#__container__ is accessible');
