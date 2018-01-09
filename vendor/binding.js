@@ -16,6 +16,8 @@ const {
   _suspendObserver,
   _Cache: Cache,
   meta: metaFor,
+  beginPropertyChanges,
+  endPropertyChanges,
 } = Ember;
 
 const IS_GLOBAL_PATH = /^[A-Z$].*[.]/;
@@ -560,6 +562,16 @@ function finishPartial(obj, meta) {
   return obj;
 }
 
+function updateRunloopQueues() {
+  if (run.queues.indexOf('sync') === -1) {
+    run.queues.unshift('sync');
+    run.backburner.options.sync = {
+      before: beginPropertyChanges,
+      after: endPropertyChanges,
+    };
+  }
+}
+
 Ember.CoreObject.reopen({
   bind(to, from) {
     if (!(from instanceof Binding)) { from = Binding.from(from); }
@@ -570,5 +582,6 @@ Ember.CoreObject.reopen({
 
 Ember.Mixin.finishPartial = finishPartial;
 Ember.Mixin.detectBinding = detectBinding;
+updateRunloopQueues();
 
 })();
