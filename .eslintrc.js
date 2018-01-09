@@ -51,6 +51,17 @@ module.exports = {
       env: {
         embertest: true
       }
+    },
+
+    // vendor files
+    {
+      files: ['vendor/**/*.js'],
+      globals: {
+        Ember: false
+      },
+      rules: {
+        'ember/new-module-imports': 'off'
+      }
     }
   ]
 };
