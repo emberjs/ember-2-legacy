@@ -2119,9 +2119,9 @@ ember-router-generator@^1.0.0, ember-router-generator@^1.2.3:
   dependencies:
     recast "^0.11.3"
 
-ember-source@~3.0.0-beta.2:
-  version "3.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/ember-source/-/ember-source-3.0.0-beta.2.tgz#011c43464d3a1519b120eec15f58eb4b2331702b"
+"ember-source@http://builds.emberjs.com/beta/shas/08bc55d20f76f874b6a7ceefd4007dde1aa7c9dc.tgz":
+  version "3.0.0-beta.2-beta"
+  resolved "http://builds.emberjs.com/beta/shas/08bc55d20f76f874b6a7ceefd4007dde1aa7c9dc.tgz#237e3682165cbd489d54aa31f92eb91c62818f6d"
   dependencies:
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^2.0.0"
