@@ -19,7 +19,8 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.6.0"
+    "ember-cli-babel": "^6.6.0",
+    "ember-cli-version-checker": "^2.1.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
@@ -36,8 +37,8 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
-    "ember-resolver": "^4.0.0",
     "ember-qunit-assert-helpers": "^0.2.1",
+    "ember-resolver": "^4.0.0",
     "ember-source": "http://builds.emberjs.com/beta/shas/08bc55d20f76f874b6a7ceefd4007dde1aa7c9dc.tgz",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
