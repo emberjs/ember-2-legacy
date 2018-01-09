@@ -24,7 +24,8 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_FREEZABLE_SUPPORT: true, // https://emberjs.com/deprecations/v1.x/#toc_ember-freezable
       _ENABLE_COMPONENT_DEFAULTLAYOUT_SUPPORT: true, // https://www.emberjs.com/deprecations/v2.x/#toc_ember-component-defaultlayout
       _ENABLE_CONTROLLER_WRAPPED_SUPPORT: true, // https://www.emberjs.com/deprecations/v1.x/#toc_objectcontroller
-      _ENABLE_PROPERTY_REQUIRED_SUPPORT: true // N/A
+      _ENABLE_PROPERTY_REQUIRED_SUPPORT: true, // N/A
+      _ENABLE_BINDING_SUPPORT: true, // https://www.emberjs.com/deprecations/v2.x/#toc_ember-binding
     }
   };
 };

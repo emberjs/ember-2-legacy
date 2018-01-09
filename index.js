@@ -43,6 +43,7 @@ module.exports = {
     this.import('vendor/string-fmt.js');
     this.import('vendor/freezable.js');
     this.import('vendor/component-defaultlayout.js');
+    this.import('vendor/binding.js');
   },
 
   treeForVendor(rawVendorTree) {
