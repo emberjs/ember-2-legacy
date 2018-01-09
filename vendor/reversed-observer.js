@@ -10,11 +10,9 @@
     return false;
   }
 
-  var originalObserver = _Ember.observer;
+  let originalObserver = _Ember.observer;
 
-  _Ember.observer = function() {
-    var args = Array.prototype.slice.call(arguments);
-
+  _Ember.observer = function(...args) {
     if (typeof args[args.length - 1] !== 'function') {
       _Ember.deprecate(
         'Passing the dependentKeys after the callback function in observer is deprecated. Ensure the callback function is the last argument.',
@@ -25,10 +23,10 @@
         }
       );
 
-      var func = args.shift(); // grab the "first" argument
-      args.push(func); // move it to the end of the array
+      let [head, ...rest] = args;
+      args = [...rest, head];
     }
 
-    return originalObserver.apply(this, args);
+    return originalObserver(...args);
   }
 })();

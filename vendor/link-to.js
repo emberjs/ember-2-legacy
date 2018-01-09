@@ -1,5 +1,5 @@
 (function() {
-  var _Ember;
+  let _Ember;
   if (typeof Ember !== 'undefined') {
     _Ember = Ember;
   } else {
@@ -23,7 +23,7 @@
           _Ember.deprecate(
             'Providing `{{link-to}}` with a param that is wrapped in a controller is deprecated. ' +
             (this.parentView ? 'Please update `' + this.parentView +
-            '` to use `{{link-to "post" someController.model}}` instead.' : ''),
+              '` to use `{{link-to "post" someController.model}}` instead.' : ''),
             false,
             { id: 'ember-routing-views.controller-wrapped-param', until: '3.0.0' },
           );

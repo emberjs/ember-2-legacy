@@ -1,5 +1,5 @@
 (function() {
-  var _Ember;
+  let _Ember;
   if (typeof Ember !== 'undefined') {
     _Ember = Ember;
   } else {
@@ -47,8 +47,7 @@
 
   var classesToExtend = [_Ember.Route, _Ember.Controller, _Ember.Component];
 
-  classesToExtend.filter(function(klass) {
-    return !_Ember.get(klass, 'prototype').hasOwnProperty('_actions');
-  })
-  .forEach(deprecateUnderscoreActions);
+  classesToExtend
+    .filter((klass) => !_Ember.get(klass, 'prototype').hasOwnProperty('_actions'))
+    .forEach(deprecateUnderscoreActions);
 })();

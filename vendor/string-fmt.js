@@ -1,5 +1,5 @@
-(function () {
-  var _Ember;
+(function() {
+  let _Ember;
   if (typeof Ember !== 'undefined') {
     _Ember = Ember;
   } else {
@@ -75,7 +75,7 @@
       @private
       @deprecated
     */
-    String.prototype.fmt = function (...args) {
+    String.prototype.fmt = function(...args) {
       return fmt(this, args);
     };
   }

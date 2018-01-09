@@ -1,5 +1,5 @@
-(function () {
-  var _Ember;
+(function() {
+  let _Ember;
   if (typeof Ember !== 'undefined') {
     _Ember = Ember;
   } else {
@@ -53,7 +53,7 @@
   }
 
   function buildFakeRegistryFunction(instance, typeForMessage, deprecatedProperty, nonDeprecatedProperty) {
-    return function() {
+    return () => {
       _Ember.deprecate(
         `Using \`${typeForMessage}.registry.${deprecatedProperty}\` is deprecated. Please use \`${typeForMessage}.${nonDeprecatedProperty}\` instead.`,
         false,
@@ -63,6 +63,7 @@
           url: 'https://emberjs.com/deprecations/v2.x/#toc_ember-application-registry-ember-applicationinstance-registry'
         }
       );
+
       return instance[nonDeprecatedProperty](...arguments);
     };
   }

@@ -1,5 +1,5 @@
 (function() {
-  var _Ember;
+  let _Ember;
   if (typeof Ember !== 'undefined') {
     _Ember = Ember;
   } else {
