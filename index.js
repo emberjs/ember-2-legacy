@@ -1,11 +1,34 @@
 /* eslint-env node */
 'use strict'
 
+const VersionChecker = require('ember-cli-version-checker');
+
 module.exports = {
   name: 'ember-2-legacy',
 
+  init() {
+    this._super && this._super.init.apply(this, arguments);
+
+    let checker = new VersionChecker(this);
+    this.emberVersion = checker.forEmber();
+  },
+
+  config() {
+    // do nothing if running with Ember 2.x
+    if (this.emberVersion.lt('3.0.0-alpha.0')) {
+      return;
+    }
+
+    return this._super.config.apply(this, arguments);
+  },
+
   included() {
     this._super.included.apply(this, arguments);
+
+    // do nothing if running with Ember 2.x
+    if (this.emberVersion.lt('3.0.0-alpha.0')) {
+      return;
+    }
 
     this.import('vendor/ember-k.js');
     this.import('vendor/safe-string.js');

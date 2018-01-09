@@ -25,6 +25,8 @@
   }
 
   if (EmberENV.EXTEND_PROTOTYPES.Function === true) {
-    Function.prototype.observesImmediately = _Ember.immediateObserver;
+    Function.prototype.observesImmediately = function(...dependentKeys) {
+      return _Ember.immediateObserver(...dependentKeys, this);
+    };
   }
 })();
