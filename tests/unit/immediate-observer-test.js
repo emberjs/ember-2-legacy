@@ -1,5 +1,7 @@
 import Ember from 'ember';
-import Object from '@ember/object';
+import { get, set, computed } from '@ember/object';
+import { run } from '@ember/runloop';
+import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 
 let originalObserver;
@@ -16,41 +18,60 @@ module('Ember.immediateObserver', {
   }
 });
 
-test('that Ember.immediateObserver is deprecated', function(assert) {
-  assert.expectDeprecation(() => {
-    const Thing = Object.extend({
-      bar: null,
-      baz: null,
+test('immediate observers should fire synchronously', function(assert) {
+  let observerCalled = 0;
 
-      foo: Ember.immediateObserver('bar', function() {
-        this.set('baz', 'helloworld');
-      })
-    });
+  // explicitly create a run loop so we do not inadvertently
+  // trigger deferred behavior
+  run(function() {
+    let obj;
+    assert.expectDeprecation(() => {
+      obj = EmberObject.extend({
+        fooDidChange: Ember.immediateObserver('foo', function() {
+          observerCalled++;
+          assert.equal(get(this, 'foo'), 'barbaz', 'newly set value is immediately available');
+        }),
 
-    const instance = Thing.create();
-    instance.set('bar', 'start');
+        foo: computed({
+          get: function() { return 'yes hello this is foo'; },
+          set: function(key, value) { return value; }
+        })
+      }).create();
+    }, /Usage of `Ember.immediateObserver` is deprecated/);
 
-    assert.equal(instance.get('baz'), 'helloworld');
-  }, 'Usage of `Ember.immediateObserver` is deprecated, use `observer` instead');
+    assert.equal(get(obj, 'foo'), 'yes hello this is foo', 'precond - computed property returns a value');
+    assert.equal(observerCalled, 0, 'observer has not yet been called');
+
+    set(obj, 'foo', 'barbaz');
+
+    assert.equal(observerCalled, 1, 'observer was called once');
+  });
 });
 
-test('that Ember.immediateObserver calls Ember.observer', function(assert) {
-    assert.expect(1);
+test('that Ember.immediateObserver generally works', function(assert) {
+  assert.expect(1);
 
-    // eslint-disable-next-line ember/new-module-imports
-    Ember.observer = () => {
-      assert.ok(true, 'immediateObserver calls observer');
-    };
+  const Thing = EmberObject.extend({
+    bar: null,
+    foo: Ember.immediateObserver('bar', function() {
+      assert.ok(true, 'was called!');
+    })
+  });
 
-    const Thing = Object.extend({
-      bar: null,
-      foo: Ember.immediateObserver('bar', function() {})
-    });
-
-    const instance = Thing.create();
-    instance.set('bar', 'start');
+  const instance = Thing.create();
+  instance.set('bar', 'start');
 });
 
-test('that function prototype correctly gets polyfilled', function(assert) {
-  assert.deepEqual(Function.prototype.observesImmediately, Ember.immediateObserver);
+test('Function.prototype.observesImmediately generally works', function(assert) {
+  assert.expect(1);
+
+  const Thing = EmberObject.extend({
+    bar: null,
+    foo: function() {
+      assert.ok(true, 'was called!');
+    }.observesImmediately('bar'),
+  });
+
+  const instance = Thing.create();
+  instance.set('bar', 'start');
 });
