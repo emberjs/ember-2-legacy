@@ -1,6 +1,9 @@
 /* eslint-env node */
 'use strict'
 
+const mergeTrees = require('broccoli-merge-trees');
+const writeFile = require('broccoli-file-creator');
+const version = require('./package.json').version;
 const VersionChecker = require('ember-cli-version-checker');
 
 module.exports = {
@@ -30,6 +33,7 @@ module.exports = {
       return;
     }
 
+    this.import('vendor/ember-2-legacy/register-version.js');
     this.import('vendor/ember-k.js');
     this.import('vendor/safe-string.js');
     this.import('vendor/enumerable-contains.js');
@@ -55,6 +59,12 @@ module.exports = {
       },
     });
 
-    return transpiledVendorTree;
+    let content = `Ember.libraries.register('Ember 2 Legacy', '${version}');`;
+    let registerVersionTree = writeFile(
+      'ember-2-legacy/register-version.js',
+      content
+    );
+
+    return mergeTrees([registerVersionTree, transpiledVendorTree]);
   }
 };
