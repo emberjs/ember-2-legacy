@@ -1,4 +1,5 @@
-/* eslint-env node, es6 */
+'use strict'
+
 const getChannelURL = require('ember-source-channel-url');
 
 module.exports = function() {
