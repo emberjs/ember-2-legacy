@@ -39,7 +39,8 @@
     "ember-load-initializers": "^1.0.0",
     "ember-qunit-assert-helpers": "^0.2.1",
     "ember-resolver": "^4.0.0",
-    "ember-source": "http://builds.emberjs.com/beta/shas/08bc55d20f76f874b6a7ceefd4007dde1aa7c9dc.tgz",
+    "ember-source": "3.0.0-beta.3",
+    "ember-source-channel-url": "^1.0.1",
     "eslint-plugin-ember": "^5.0.0",
     "eslint-plugin-node": "^5.2.1",
     "loader.js": "^4.2.3"
