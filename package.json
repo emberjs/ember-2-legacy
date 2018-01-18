@@ -1,7 +1,7 @@
 {
   "name": "ember-2-legacy",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember addon which supports deprecations slated for 3.0.0 removal in the 3.x series.",
   "keywords": [
     "ember-addon"
   ],
@@ -11,7 +11,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/emberjs/ember-2-legacy",
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
