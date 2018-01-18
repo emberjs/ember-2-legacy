@@ -1,13 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-let deprecate;
-
-try {
-  deprecate = require('ember-source/dist/ember.prod').deprecate;
-} catch(e) {
-  deprecate = require('../bower_components/ember/ember.prod').deprecate;
-}
+const deprecate = require('ember-source/dist/ember.prod').deprecate;
 
 function calculateLocationDisplay(moduleName, loc) {
   if (typeof loc === 'undefined') {
