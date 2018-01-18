@@ -1,7 +1,12 @@
 /* eslint-env node */
 'use strict'
 
+const mergeTrees = require('broccoli-merge-trees');
+const writeFile = require('broccoli-file-creator');
+const version = require('./package.json').version;
 const VersionChecker = require('ember-cli-version-checker');
+
+const minEmberVersion = '3.0.0-beta.3';
 
 module.exports = {
   name: 'ember-2-legacy',
@@ -9,13 +14,13 @@ module.exports = {
   init() {
     this._super && this._super.init.apply(this, arguments);
 
-    let checker = new VersionChecker(this);
+    let checker = new VersionChecker(this.parent);
     this.emberVersion = checker.forEmber();
   },
 
   config() {
     // do nothing if running with Ember 2.x
-    if (this.emberVersion.lt('3.0.0-alpha.0')) {
+    if (this.emberVersion.lt(minEmberVersion)) {
       return;
     }
 
@@ -25,8 +30,11 @@ module.exports = {
   included() {
     this._super.included.apply(this, arguments);
 
+    // Always register the version
+    this.import('vendor/ember-2-legacy/register-version.js');
+
     // do nothing if running with Ember 2.x
-    if (this.emberVersion.lt('3.0.0-alpha.0')) {
+    if (this.emberVersion.lt(minEmberVersion)) {
       return;
     }
 
@@ -55,6 +63,12 @@ module.exports = {
       },
     });
 
-    return transpiledVendorTree;
+    let content = `Ember.libraries.register('Ember 2 Legacy', '${version}');`;
+    let registerVersionTree = writeFile(
+      'ember-2-legacy/register-version.js',
+      content
+    );
+
+    return mergeTrees([registerVersionTree, transpiledVendorTree]);
   }
 };
