@@ -26,6 +26,7 @@ module.exports = function(/* environment, appConfig */) {
       _ENABLE_CONTROLLER_WRAPPED_SUPPORT: true, // https://www.emberjs.com/deprecations/v1.x/#toc_objectcontroller
       _ENABLE_PROPERTY_REQUIRED_SUPPORT: true, // N/A
       _ENABLE_BINDING_SUPPORT: true, // https://www.emberjs.com/deprecations/v2.x/#toc_ember-binding
+      _ENABLE_INPUT_TRANSFORM_SUPPORT: true // N/A
     }
   };
 };

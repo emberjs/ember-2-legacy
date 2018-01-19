@@ -52,6 +52,15 @@ module.exports = {
     this.import('vendor/freezable.js');
     this.import('vendor/component-defaultlayout.js');
     this.import('vendor/binding.js');
+    this.import('vendor/text-support.js');
+
+    // Only include this in 3.0 as it has problems with 2.12 as
+    // as the AST has changed
+    const transform = require('./transforms/input');
+    this.app.registry.add('htmlbars-ast-plugin', {
+      name: 'transform-input-on-to-onEvent',
+      plugin: transform
+    });
   },
 
   treeForVendor(rawVendorTree) {
