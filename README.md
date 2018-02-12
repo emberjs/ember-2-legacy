@@ -16,34 +16,3 @@ ember install ember-2-legacy
 ## What Deprecations are Covered
 
 All [deprecations found here](https://www.emberjs.com/deprecations/v2.x/) which have a `until: 3.0.0` are currently supported by this addon.
-
-## How to Disable Certain Deprecations
-
-All deprecations are controlled by environment variables that can be toggled on or off. By default all deprecations are `on`. You should ideally turn off all deprecations that
-your app is not currently hitting to be sure that you are able to move off of this addon when the time comes.
-
-An example of how to configure these in your app:
-
-```js
-// config/environment.js
-
-module.exports = function(environment) {
-  let ENV = {
-    // ...
-    EmberENV: {
-      // ...
-
-      _ENABLE_EMBER_K_SUPPORT: false,
-      _ENABLE_UNDERSCORE_ACTIONS_SUPPORT: false,
-      // etc...
-    }
-  };
-
-  // ...
-  return ENV;
-};
-
-```
-**NOTE** that changes to your config may need your server to be restarted before seeing the changes.
-
-To view all flags and which deprecations they control [click here](https://github.com/emberjs/ember-2-legacy/blob/master/config/environment.js).
