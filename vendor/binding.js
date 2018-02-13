@@ -35,6 +35,7 @@ function pushUniqueListener(destination, source, index) {
   destination.push(target, method, source[index + 3]);
 }
 
+const SUSPENDED = 2;
 function polyfilledMetaFor(obj) {
   let meta = metaFor(obj);
 
