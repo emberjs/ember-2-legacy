@@ -13,12 +13,120 @@ const {
   addListener,
   addObserver,
   removeObserver,
-  _suspendObserver,
   _Cache: Cache,
   meta: metaFor,
   beginPropertyChanges,
   endPropertyChanges,
 } = Ember;
+
+/*
+ *  This following code was removed (https://github.com/emberjs/ember.js/pull/16162) and needs to be
+ *  brought over since Ember._suspendObserver no longer exists.
+ */
+
+function pushUniqueListener(destination, source, index) {
+  let target = source[index + 1];
+  let method = source[index + 2];
+  for (let destinationIndex = 0; destinationIndex < destination.length; destinationIndex += 3) {
+    if (destination[destinationIndex] === target && destination[destinationIndex + 1] === method) {
+      return;
+    }
+  }
+  destination.push(target, method, source[index + 3]);
+}
+
+function polyfilledMetaFor(obj) {
+  let meta = metaFor(obj);
+
+  meta._suspendedListeners = undefined;
+
+  meta.matchingListeners = function(eventName) {
+    let pointer = this;
+    let result;
+    while (pointer !== undefined) {
+      let listeners = pointer._listeners;
+      if (listeners !== undefined) {
+        for (let index = 0; index < listeners.length; index += 4) {
+          if (listeners[index] === eventName) {
+            result = result || [];
+            pushUniqueListener(result, listeners, index);
+          }
+        }
+      }
+      if (pointer._listenersFinalized) { break; }
+      pointer = pointer.parent;
+    }
+    let sus = this._suspendedListeners;
+    if (sus !== undefined && result !== undefined) {
+      for (let susIndex = 0; susIndex < sus.length; susIndex += 3) {
+        if (eventName === sus[susIndex]) {
+          for (let resultIndex = 0; resultIndex < result.length; resultIndex += 3) {
+            if (result[resultIndex] === sus[susIndex + 1] && result[resultIndex + 1] === sus[susIndex + 2]) {
+              result[resultIndex + 2] |= SUSPENDED;
+            }
+          }
+        }
+      }
+    }
+    return result;
+  }
+
+  meta.suspendListeners = function(eventNames, target, method, callback) {
+    let sus = this._suspendedListeners;
+    if (sus === undefined) {
+      sus = this._suspendedListeners = [];
+    }
+    for (let i = 0; i < eventNames.length; i++) {
+      sus.push(eventNames[i], target, method);
+    }
+    try {
+      return callback.call(target);
+    } finally {
+      if (sus.length === eventNames.length) {
+        this._suspendedListeners = undefined;
+      } else {
+        for (let i = sus.length - 3; i >= 0; i -= 3) {
+          if (sus[i + 1] === target && sus[i + 2] === method && eventNames.indexOf(sus[i]) !== -1) {
+            sus.splice(i, 3);
+          }
+        }
+      }
+    }
+  }
+
+  return meta;
+}
+
+const AFTER_OBSERVERS = ':change';
+function changeEvent(keyName) {
+  return keyName + AFTER_OBSERVERS;
+}
+
+function suspendListener(obj, eventName, target, method, callback) {
+  return suspendListeners(obj, [eventName], target, method, callback);
+}
+
+function suspendListeners(obj, eventNames, target, method, callback) {
+  if (!method && 'function' === typeof target) {
+    method = target;
+    target = null;
+  }
+
+  return polyfilledMetaFor(obj).suspendListeners(eventNames, target, method, callback);
+}
+
+function _suspendObserver(obj, path, target, method, callback) {
+  return suspendListener(obj, changeEvent(path), target, method, callback);
+}
+
+function _suspendObservers(obj, paths, target, method, callback) {
+  let events = paths.map(changeEvent);
+  return suspendListeners(obj, events, target, method, callback);
+}
+
+/*
+ * End of code brought over for missing Ember._suspendObserver.
+ */
 
 const IS_GLOBAL_PATH = /^[A-Z$].*[.]/;
 
@@ -558,7 +666,7 @@ function connectBindings(obj, meta) {
 }
 
 function finishPartial(obj, meta) {
-  connectBindings(obj, meta === undefined ? metaFor(obj) : meta);
+  connectBindings(obj, meta === undefined ? polyfilledMetaFor(obj) : meta);
   return obj;
 }
 
