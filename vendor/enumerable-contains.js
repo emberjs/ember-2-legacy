@@ -9,11 +9,8 @@
   if (EmberENV && EmberENV._ENABLE_ENUMERABLE_CONTAINS_SUPPORT !== true) {
     return false;
   }
-  if (_Ember.Enumerable.mixins[0].properties.hasOwnProperty('contains')) {
-    return false;
-  }
 
-  _Ember.Enumerable.reopen({
+  _Ember.Array.reopen({
     contains(obj) {
       _Ember.deprecate(
         '`Enumerable#contains` is deprecated, use `Enumerable#includes` instead.',

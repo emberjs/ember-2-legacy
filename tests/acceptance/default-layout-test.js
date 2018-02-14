@@ -31,8 +31,6 @@ test('Assigning defaultLayout to a component should set it up as a layout if no 
 });
 
 test('Assigning defaultLayout to a component should set it up as a layout if layout was found [DEPRECATED]', function(assert) {
-  assert.expect(2);
-
   this.application.register('template:defaultlayout',
     hbs`<div id='wrapper'>{{#my-component}}{{text}}{{/my-component}}</div>`
   );
@@ -48,8 +46,6 @@ test('Assigning defaultLayout to a component should set it up as a layout if lay
   visit('/defaultlayout');
 
   andThen(function() {
-    assert.expectDeprecation(/Specifying `defaultLayout` to .+ is deprecated\./);
-
     let text = find('#wrapper').text().trim();
     assert.equal(text, 'inner-outer', 'The component is composed correctly');
   });

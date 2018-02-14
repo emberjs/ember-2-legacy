@@ -13,7 +13,6 @@ const {
   addListener,
   addObserver,
   removeObserver,
-  _suspendObserver,
   _Cache: Cache,
   meta: metaFor,
   beginPropertyChanges,
@@ -295,22 +294,15 @@ class Binding {
       if (log) {
         Logger.log(' ', this.toString(), '->', fromValue, fromObj);
       }
-      if (this._oneWay) {
-        trySet(toObj, this._to, fromValue);
-      } else {
-        _suspendObserver(toObj, this._to, this, 'toDidChange', function() {
-          trySet(toObj, this._to, fromValue);
-        });
-      }
+
+      trySet(toObj, this._to, fromValue);
     // If we're synchronizing *to* the remote object.
     } else if (direction === 'back') {
       let toValue = get(toObj, this._to);
       if (log) {
         Logger.log(' ', this.toString(), '<-', toValue, toObj);
       }
-      _suspendObserver(fromObj, fromPath, this, 'fromDidChange', () => {
-        trySet(fromObj, fromPath, toValue);
-      });
+      trySet(fromObj, fromPath, toValue);
     }
   }
 }
