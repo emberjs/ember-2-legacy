@@ -1,6 +1,6 @@
 {
   "name": "ember-2-legacy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Ember addon which supports deprecations slated for 3.0.0 removal in the 3.x series.",
   "keywords": [
     "ember-addon"
