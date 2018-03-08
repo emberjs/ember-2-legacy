@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const getChannelURL = require('ember-source-channel-url');
 
@@ -6,8 +6,8 @@ module.exports = function() {
   return Promise.all([
     getChannelURL('release'),
     getChannelURL('beta'),
-    getChannelURL('canary')
-  ]).then(urls => {
+    getChannelURL('canary'),
+  ]).then((urls) => {
     return {
       useYarn: true,
       scenarios: [
@@ -28,9 +28,17 @@ module.exports = function() {
           }
         },
         {
+          name: 'ember-lts-2.18',
+          npm: {
+            devDependencies: {
+              'ember-source': '~2.18.0'
+            }
+          }
+        },
+        {
           name: 'ember-release',
           npm: {
-            devDeprenencies: {
+            devDependencies: {
               'ember-source': urls[0]
             }
           }
@@ -60,4 +68,4 @@ module.exports = function() {
       ]
     };
   });
-}
+};
