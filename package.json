@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "broccoli-file-creator": "^1.1.1",
-    "broccoli-merge-trees": "^3.0.0",
+    "broccoli-merge-trees": "~2.0.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-version-checker": "^2.1.0"
   },
