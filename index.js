@@ -10,6 +10,7 @@ const VersionChecker = require('ember-cli-version-checker');
 const minEmberVersion = '3.0.0-beta.3';
 const flagToEnvironment = {
   'ember-k': '_ENABLE_EMBER_K_SUPPORT',
+  'ember-required': '_ENABLE_PROPERTY_REQUIRED_SUPPORT',
   'safe-string': '_ENABLE_SAFE_STRING_SUPPORT',
   'enumerable-contains': '_ENABLE_ENUMERABLE_CONTAINS_SUPPORT',
   'underscore-actions': '_ENABLE_UNDERSCORE_ACTIONS_SUPPORT',
@@ -67,6 +68,7 @@ module.exports = {
     }
 
     this.importUnlessFlagged('vendor/ember-k.js', ['ember-k']);
+    this.importUnlessFlagged('vendor/ember-required.js', ['ember-required']);
     this.importUnlessFlagged('vendor/safe-string.js', ['safe-string']);
     this.importUnlessFlagged('vendor/enumerable-contains.js', ['enumerable-contains']);
     this.importUnlessFlagged('vendor/underscore-actions.js', ['underscore-actions']);
