@@ -14,7 +14,7 @@ ember install ember-2-legacy
 
 All [deprecations found here](https://www.emberjs.com/deprecations/v2.x/) which have a `until: 3.0.0` are currently supported by this addon.
 
-In `ember-cli-build.js` you can specify a config for `ember-2-legacy`. This object has individual flags as key names and they can be turned off simply by setting a flag to `false`. Below is a sample config which shows all of the flag names (note all all `true` by default):
+In `ember-cli-build.js` you can specify a config for `ember-2-legacy`. This object has individual flags as key names and they can be turned off simply by setting a flag to `false`. Below is a sample config which shows all of the flag names (note all are `true` by default):
 
 ```js
 new EmberApp(defaults, {
