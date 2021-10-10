@@ -20,6 +20,7 @@ In `ember-cli-build.js` you can specify a config for `ember-2-legacy`. This obje
 new EmberApp(defaults, {
   'ember-2-legacy': {
     'ember-k': false,
+    'ember-required': false,
     'safe-string': false,
     'enumerable-contains': false,
     'underscore-actions': false,
